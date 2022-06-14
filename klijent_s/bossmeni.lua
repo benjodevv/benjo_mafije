@@ -355,7 +355,13 @@ Citizen.CreateThread(function()
         }, {
           options = {
             {
-              event = "otvoribossmenu",
+              action = function()
+                for k, v in pairs(Config.Organizacije) do     
+                    if ESX.PlayerData.job and ESX.PlayerData.job.name == v.job then  
+                        openBossMenu(v.job, v.name)
+                    end
+                end
+              end,
               icon = "fas fa-sign-in-alt",
               label = "Otvori BossMenu",
               job = v.job,
@@ -366,10 +372,3 @@ Citizen.CreateThread(function()
     end
 end)
 
-RegisterNetEvent('otvoribossmenu',function() 
-    for k, v in pairs(Config.Organizacije) do     
-        if ESX.PlayerData.job and ESX.PlayerData.job.name == v.job then  
-            openBossMenu(v.job, v.name)
-        end
-    end  
-end)
