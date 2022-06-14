@@ -73,7 +73,13 @@ Citizen.CreateThread(function()
         }, {
           options = {
             {
-              event = "otvorisef",
+              action = function()
+		for k, v in pairs(Config.Organizacije) do     
+        	if ESX.PlayerData.job and ESX.PlayerData.job.name == v.job then  
+           	TriggerEvent('ox_inventory:openInventory', 'stash',  v.ImeSefa )
+        	end
+    		end 
+	      end,
               icon = "fas fa-sign-in-alt",
               label = "Otvori sef",
               job = v.job,
@@ -84,12 +90,4 @@ Citizen.CreateThread(function()
     end
 end)
 
-RegisterNetEvent('otvorisef',function()
-    
-       
-    for k, v in pairs(Config.Organizacije) do     
-        if ESX.PlayerData.job and ESX.PlayerData.job.name == v.job then  
-            TriggerEvent('ox_inventory:openInventory', 'stash',  v.ImeSefa )
-        end
-    end  
-end)
+
